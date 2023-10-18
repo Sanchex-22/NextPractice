@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 
 export default function Homepage() {
     const [pokemon, setPokemon] = useState(null);
-
+    const [RandomId,setRandom]= useState(1)
     useEffect(() => {
-        fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+        fetch('https://pokeapi.co/api/v2/pokemon/'+RandomId)
             .then(response => response.json())
             .then(data => {
                 setPokemon(data);
@@ -15,6 +15,61 @@ export default function Homepage() {
                 console.error('Error fetching Pokémon data:', error);
             });
     }, []);
+
+    function btnSiguiente (){
+        if(RandomId>0){
+            let i=RandomId+1
+            setRandom(i)
+            fetch('https://pokeapi.co/api/v2/pokemon/'+RandomId)
+            .then(response => response.json())
+            .then(data => {
+                setPokemon(data);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error fetching Pokémon data:', error);
+            });
+        }
+        else{
+            console.log("no hay indice 0")
+        }
+    }
+    function btnAleatorio (){
+        if(RandomId>0){
+            const i=Math.floor(Math.random() * 806 + 1)
+            setRandom(i)
+            fetch('https://pokeapi.co/api/v2/pokemon/'+RandomId)
+            .then(response => response.json())
+            .then(data => {
+                setPokemon(data);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error fetching Pokémon data:', error);
+            });
+        }
+        else{
+            console.log("no hay indice 0")
+        }
+    }
+    function btnAnterior (){
+        if(RandomId>0){
+            let i=RandomId-1
+            setRandom(i)
+            fetch('https://pokeapi.co/api/v2/pokemon/'+RandomId)
+            .then(response => response.json())
+            .then(data => {
+                setPokemon(data);
+                console.log(data)
+            })
+            .catch(error => {
+                console.error('Error fetching Pokémon data:', error);
+            });
+        }
+        else{
+            console.log("no hay indice 0")
+        }
+    }
 
     return (
         <div className='flex bg-hinted-grey-1 h-screen text-white pt-16 justify-center items-center w-full'>
@@ -33,12 +88,12 @@ export default function Homepage() {
                     
                     {/* You can access other properties of the Pokemon here */}
                     <div className="flex justify-between">
-                        <button className="w-1/2 bg-violet-700 rounded-md p-2 border mt-2">Anterior</button>
-                        <button className="w-1/2 bg-violet-700 rounded-md p-2 border mt-2">Siguiente</button>
+                        <button className="w-1/2 bg-violet-700 rounded-md p-2 border mt-2" onClick={btnAnterior}>Anterior</button>
+                        <button className="w-1/2 bg-violet-700 rounded-md p-2 border mt-2" onClick={btnSiguiente}>Siguiente</button>
                     </div>
-                    
+
                     <div className="flex justify-center">
-                        <button className="w-full bg-violet-700 rounded-md p-2 border mt-2">Aleatorio</button>
+                        <button className="w-full bg-violet-700 rounded-md p-2 border mt-2 " onClick={btnAleatorio}>Aleatorio</button>
                     </div>
                 </div>
             )}
