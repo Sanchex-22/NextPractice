@@ -2,6 +2,7 @@ import Layout from "./levelpages/layout";
 import { useEffect, useState } from 'react';
 import getPokemonServices from "@/services/pokeapi_services";
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import TicketCard from "@/components/ticket_card";
 
 type Pokemon = {
   name: string;
@@ -19,12 +20,11 @@ export async function getServerSideProps() {
 const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [RandomId,setRandom]= useState(1)
   const [pokemon1,setPokemon]=useState(pokemon)
-  console.log(RandomId)
+  console.log(pokemon1)
 
   function btnAleatorio (){
     const id=Math.floor(Math.random() * 806 + 1)
     setRandom(id)
-    console.log(id)
     if(id>0){
         getPokemonServices.getPokemon(id)
         .then(response => response)
@@ -95,6 +95,15 @@ const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideP
             <p className="text-[20px]">id: {pokemon1.id}</p>
             <p>Base Exp:{pokemon1.base_experience}</p>
             <p>Moves: {pokemon1.moves[0].move.name}</p>
+
+            <div className="pt-2 pb-2">
+            {pokemon1.types.length > 0 && pokemon1.types.map((pokemon,index) =>(
+              <>              
+                <TicketCard prop={pokemon1.types[index].type.name} />
+              </>
+            ))}
+            </div>
+
           </div>
           {/* You can access other properties of the Pokemon here */}
           <div className="flex justify-between">
@@ -105,6 +114,7 @@ const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideP
           <div className="flex justify-center">
             <button className="w-full bg-violet-700 rounded-md p-2 border mt-2 " onClick={btnAleatorio}>Aleatorio</button>
           </div>
+
         </div>
       ) : (
         <p>No tenemos pokemones</p>
