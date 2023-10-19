@@ -3,7 +3,7 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 
 
-export default function Layout ({title='next'}) {
+export default function Layout ({title}) {
     return(
     <>
         <Head>
