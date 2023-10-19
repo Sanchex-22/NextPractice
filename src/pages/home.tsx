@@ -22,10 +22,11 @@ const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideP
   console.log(RandomId)
 
   function btnAleatorio (){
-    if(RandomId>0){
-        const i=Math.floor(Math.random() * 806 + 1)
-        setRandom(i)
-        getPokemonServices.getPokemon(RandomId)
+    const id=Math.floor(Math.random() * 806 + 1)
+    setRandom(id)
+    console.log(id)
+    if(id>0){
+        getPokemonServices.getPokemon(id)
         .then(response => response)
         .then(data => {
             setPokemon(data);
@@ -43,10 +44,10 @@ const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideP
   }
 
   function btnAnterior (){
-    if(RandomId>0){
-        let i=RandomId-1
-        setRandom(i)
-        getPokemonServices.getPokemon(RandomId)
+    let id=RandomId-1
+    if(id>0){
+        setRandom(id)
+        getPokemonServices.getPokemon(id)
         .then(response => response)
         .then(data => {
             setPokemon(data);
@@ -64,10 +65,10 @@ const HomePage = ({ pokemon }: InferGetServerSidePropsType<typeof getServerSideP
 }
 
   function btnSiguiente (){
+    let id=RandomId+1
     if(RandomId>0){
-        let i=RandomId+1
-        setRandom(i)
-        getPokemonServices.getPokemon(RandomId)
+        setRandom(id)
+        getPokemonServices.getPokemon(id)
         .then(response => response)
         .then(data => {
             setPokemon(data);
