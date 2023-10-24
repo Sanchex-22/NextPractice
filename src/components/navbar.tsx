@@ -9,7 +9,7 @@ export default function Navbar(){
 
         <ul className="flex">
           <li className="mr-5 font-bold">
-            <Link href={"/home"}>Casa</Link>
+            <Link href={"/"}>Inicio</Link>
           </li>
           <li className="mr-5 font-bold">
             <Link href={"/about"}>About</Link>
