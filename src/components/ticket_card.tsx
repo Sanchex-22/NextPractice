@@ -1,82 +1,94 @@
 import {useEffect,useState} from 'react'
 
-export default function TicketCard(props){
-    const [data, setData] = useState({});
+type Type ={
+    type:{
+        name: string
+    }
+}
+
+type Data = {
+    type: string
+}
+
+export default function TicketCard({type}: {type:string}){
+    const [data, setData] = useState({
+        type: ""
+    });
     useEffect(() => {
-        setData(props);
-      }, [props]);
-      console.log(data)
+        setData({type});
+      }, [type]);
+      
     return(
         <>
-            {data.prop === "grass" ?
+            {data.type === "grass" ?
             <span className="inline-block bg-green-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "poison" ?
+            {data.type === "poison" ?
             <span className="inline-block bg-violet-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "fire" ?
+            {data.type === "fire" ?
             <span className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "normal" ?
+            {data.type === "normal" ?
             <span className="inline-block bg-gray-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "water" ?
+            {data.type === "water" ?
             <span className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "shadow" ?
+            {data.type === "shadow" ?
             <span className="inline-block bg-violet-950 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "ice" ?
+            {data.type === "ice" ?
             <span className="inline-block bg-cyan-300 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "rock" ?
+            {data.type === "rock" ?
             <span className="inline-block bg-yellow-900 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "steel" ?
+            {data.type === "steel" ?
             <span className="inline-block bg-gray-700 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "psychic" ?
+            {data.type === "psychic" ?
             <span className="inline-block bg-red-400 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "fairy" ?
+            {data.type === "fairy" ?
             <span className="inline-block bg-violet-300 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
-            {data.prop === "electric" ?
+            {data.type === "electric" ?
             <span className="inline-block bg-yellow-400 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
-                #{data.prop}
+                #{data.type}
             </span>
             : null}
 
